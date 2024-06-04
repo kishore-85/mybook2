@@ -88,3 +88,7 @@ a{
 li{
   margin-top: 20px;
 }
+
+.errors{
+  color: red;
+}
