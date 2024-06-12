@@ -39,7 +39,7 @@ function Addcustomer(){
                 <Stack>
                     <label>Customer Name</label>
                 </Stack>
-                <Stack sx={{marginLeft:'15px'}}>
+                <Stack sx={{marginLeft:'25px'}}>
                 <TextField label="Full name" size="small" name="cust_name" onChange={formik.handleChange} value={formik.values.cust_name} required></TextField>           
                 </Stack>
          </Stack>
@@ -47,7 +47,7 @@ function Addcustomer(){
                 <Stack>
                     <label>Company Name</label>
                 </Stack>
-                <Stack sx={{marginLeft:'15px'}}>
+                <Stack sx={{marginLeft:'25px'}}>
                      <TextField  size="small" name="cmpy_name" onChange={formik.handleChange} value={formik.values.cmpy_name}  ></TextField>           
                     <Stack sx={{marginTop:'5px'}}>{ formik.touched.cmpy_name && formik.errors.cmpy_name?<Alert severity="error">company name is required.</Alert>:null} </Stack> 
                 </Stack>
@@ -57,7 +57,7 @@ function Addcustomer(){
                 <Stack>
                     <label>Customer Email</label>
                 </Stack>
-                <Stack sx={{marginLeft:'19px'}}>
+                <Stack sx={{marginLeft:'29px'}}>
                    <TextField  size="small" name="email" onChange={formik.handleChange} value={formik.values.email} required></TextField>  
                    <Stack sx={{marginTop:'5px'}}> 
                        {formik.touched.email && formik.errors.email?<Alert severity="error">Please enter valid email </Alert>:null}
@@ -70,7 +70,7 @@ function Addcustomer(){
                 <Stack>
                     <label>Customer Phone</label>
                 </Stack>
-                <Stack sx={{marginLeft:'15px'}}>
+                <Stack sx={{marginLeft:'25px'}}>
                 <TextField type="number" size="small" name="phone_no" onChange={formik.handleChange} value={formik.values.phone_no} ></TextField>           
                 </Stack>
          </Stack>

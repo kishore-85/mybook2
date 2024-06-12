@@ -26,7 +26,8 @@ function AddProduct() {
    }
 
    const validationSchema = Yup.object({
-    prod_name: Yup.string().required(),    
+    prod_name: Yup.string().required(),
+    category: Yup.string().required(),      
    })
 
    useEffect(()=>{
@@ -61,26 +62,39 @@ function AddProduct() {
     <div>
       <form onSubmit={formik.handleSubmit}>
       <Stack margin="14px" spacing={4}>
-        <Stack direction="row" spacing={10}>
-          <label style={{ paddingTop: "5px" }}>Product Name</label>
-          <TextField label="Product" size="small" name="prod_name" onChange={formik.handleChange} value={formik.values.prod_name} required></TextField>
-           
-          {formik.errors.prod_name?<Alert severity="error">Product name is required.</Alert>:null} 
-                            
+
+        <Stack direction="row">
+          <Stack>
+              <label style={{ paddingTop: "5px" }}>Product Name</label>
+          </Stack>
+          <Stack sx={{marginLeft:'45px',marginRight:'5px'}}>
+              <TextField label="Product" size="small" name="prod_name" onChange={formik.handleChange} value={formik.values.prod_name} ></TextField>
+          </Stack>       
+            {formik.errors.prod_name?<Alert severity="error">Product name is required.</Alert>:null}                           
         </Stack>
-        <Stack direction="row" spacing={15}>
-          <label style={{ paddingTop: "5px" }}>Category</label>
-          <TextField label="product category" name="category" onChange={formik.handleChange} value={formik.values.category} size="small"></TextField>        
+
+        <Stack direction="row">
+          <Stack>
+               <label style={{ paddingTop: "5px" }}>Category</label>
+          </Stack>
+          <Stack  sx={{marginLeft:'82px',marginRight:'5px'}}>
+               <TextField label="product category" name="category" onChange={formik.handleChange} value={formik.values.category} size="small"></TextField>  
+          </Stack>                
+          {formik.errors.category?<Alert severity="error">category  is required.</Alert>:null} 
         </Stack>       
         
        
         
-        <Stack direction="row" spacing={19.5}>
-          <label style={{ paddingTop: "5px" }}>SKU</label>
-          <TextField label="Unit" name="SKU" onChange={formik.handleChange} value={formik.values.SKU} size="small"></TextField>         
+        <Stack direction="row">
+          <Stack>
+               <label style={{ paddingTop: "5px" }}>SKU</label>
+          </Stack>
+          <Stack sx={{marginLeft:'120px'}}>
+               <TextField label="Unit" name="SKU" onChange={formik.handleChange} value={formik.values.SKU} size="small"></TextField> 
+          </Stack>                  
         </Stack>
 
-        <Stack direction="row" spacing={10}>
+        <Stack direction="row" spacing={6}>
         <label style={{ paddingTop: "5px" }}>Tax-Preference</label>
           <FormControl>            
             <RadioGroup
@@ -107,7 +121,7 @@ function AddProduct() {
            <FormControlLabel label="Purchase" control={<Checkbox onChange={handlepurchaseval} name="Purchasevalue" ></Checkbox>}></FormControlLabel>
            <Stack direction="row" spacing={7}>
              <label style={{ paddingTop: "5px" }}>Purchase Price</label>
-             <TextField label="INR" size="small"  name="Purchase_price" onChange={formik.handleChange} value={formik.values.Purchase_price}> </TextField>              
+             <TextField label="INR" size="small"  name="Purchase_price" onChange={formik.handleChange} value={formik.values.Purchase_price}> </TextField>             
            </Stack>
            <Stack direction="row" spacing={10} sx={{paddingTop:'15px'}}>
              <label style={{ paddingTop: "5px" }}>Description</label>
