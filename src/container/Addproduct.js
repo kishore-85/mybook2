@@ -4,41 +4,80 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Box from '@mui/material/Box';
-import {Checkbox} from '@mui/material'
-import { useState } from "react";
+import {Checkbox,width} from '@mui/material'
+import { useState,useEffect } from "react";
 import Button from '@mui/material/Button';
-
+import { Field, Formik, useFormik } from "formik";
+import Alert from '@mui/material/Alert';
+import * as Yup from 'yup'
 
 function AddProduct() {
 
-  const  [Purchasevalue,setPurchasevalue] = useState(false)
+  const  [Purchaseval,setPurchaseval] = useState(false)
   const   [salesvalue,setSalesvalue] = useState(false)
 
-   function handleChangePurchase(e){
-    setPurchasevalue(e.target.checked);
+   function handlepurchaseval(e){
+    setPurchaseval(e.target.checked);
+    
    }
 
    function handleChangeSales(e){
     setSalesvalue(e.target.checked);
    }
-   console.log(Purchasevalue,'p');
-   console.log(salesvalue,'s');
+
+   const validationSchema = Yup.object({
+    prod_name: Yup.string().required(),    
+   })
+
+   useEffect(()=>{
+     console.log('suma')
+   },[Purchaseval])
+   
+   const formik = useFormik({
+     initialValues:{
+       prod_name:'',
+       category:'',
+       SKU:'',
+       Purchase_price:'',
+       Sales_price:'',
+       P_dscrpt:'',
+       S_dscrpt:'',
+       Tax_prfnce:null,
+       Purchasevalue:Purchaseval,
+       salesvalue:salesvalue
+     },
+     onSubmit:(e)=>{
+       formik.resetForm();
+       console.log(e,'val')
+     },
+     validationSchema
+   })
+
+   useEffect(()=>{
+       
+   },[formik])
+  
   return (
     <div>
+      <form onSubmit={formik.handleSubmit}>
       <Stack margin="14px" spacing={4}>
         <Stack direction="row" spacing={10}>
           <label style={{ paddingTop: "5px" }}>Product Name</label>
-          <TextField label="Product" size="small" required></TextField>
-          {/* <TextField label="Product" size='small'></TextField> */}
+          <TextField label="Product" size="small" name="prod_name" onChange={formik.handleChange} value={formik.values.prod_name} required></TextField>
+           
+          {formik.errors.prod_name?<Alert severity="error">Product name is required.</Alert>:null} 
+                            
         </Stack>
         <Stack direction="row" spacing={15}>
           <label style={{ paddingTop: "5px" }}>Category</label>
-          <TextField label="Customer" size="small"></TextField>
-        </Stack>
-
+          <TextField label="product category" name="category" onChange={formik.handleChange} value={formik.values.category} size="small"></TextField>        
+        </Stack>       
+        
+       
+        
         <Stack direction="row" spacing={19.5}>
           <label style={{ paddingTop: "5px" }}>SKU</label>
-          <TextField label="SKU" size="small"></TextField>
+          <TextField label="Unit" name="SKU" onChange={formik.handleChange} value={formik.values.SKU} size="small"></TextField>         
         </Stack>
 
         <Stack direction="row" spacing={10}>
@@ -51,10 +90,10 @@ function AddProduct() {
               name="radio-buttons-group"
             >
               <FormControlLabel
-                value="Taxable" control={<Radio />} label="Taxable"             
+                   name="Tax_prfnce" onChange={formik.handleChange} value="Taxble" control={<Radio />} label="Taxable"             
               />
               <FormControlLabel
-                value="Non-Txable" control={<Radio />}  label="Non-Txable"               
+                   name="Tax_prfnce" onChange={formik.handleChange} value="Non-Txable" control={<Radio />}  label="Non-Txable"               
               />
             </RadioGroup>
           </FormControl>
@@ -65,10 +104,10 @@ function AddProduct() {
       
       <Stack spacing={8} direction="row" sx={{padding:'15px'}}>
         <Box sx={{width:'500px',height:'300px',backgroundColor:'#f7f7f5',padding:'10px'}}>       
-           <FormControlLabel label="Purchase" control={<Checkbox onChange={handleChangePurchase} checked={Purchasevalue}></Checkbox>}></FormControlLabel>
+           <FormControlLabel label="Purchase" control={<Checkbox onChange={handlepurchaseval} name="Purchasevalue" ></Checkbox>}></FormControlLabel>
            <Stack direction="row" spacing={7}>
              <label style={{ paddingTop: "5px" }}>Purchase Price</label>
-             <TextField label="INR" size="small"></TextField>
+             <TextField label="INR" size="small"  name="Purchase_price" onChange={formik.handleChange} value={formik.values.Purchase_price}> </TextField>              
            </Stack>
            <Stack direction="row" spacing={10} sx={{paddingTop:'15px'}}>
              <label style={{ paddingTop: "5px" }}>Description</label>
@@ -78,14 +117,15 @@ function AddProduct() {
                 multiline
                 rows={4}
                 sx={{width:'300px'}}
+                name="P_dscrpt" onChange={formik.handleChange} value={formik.values.P_dscrpt}
              />
            </Stack>
         </Box>
         <Box sx={{width:'500px',height:'300px',backgroundColor:'#f7f7f5',padding:'10px'}}>
-          <FormControlLabel label="sales" control={<Checkbox onChange={handleChangeSales} checked={salesvalue}></Checkbox>}></FormControlLabel>
+          <FormControlLabel label="sales" control={<Checkbox onChange={handleChangeSales}  checked={salesvalue}></Checkbox>}></FormControlLabel>
           <Stack direction="row" spacing={10}>
              <label style={{ paddingTop: "5px" }}>Selling Price</label>
-             <TextField label="INR" size="small"></TextField>
+             <TextField label="INR" size="small"name="Sales_price" onChange={formik.handleChange} value={formik.values.Sales_price} ></TextField>
            </Stack>
            <Stack direction="row" spacing={10} sx={{paddingTop:'15px'}}>
              <label style={{ paddingTop: "5px" }}>Description</label>
@@ -95,6 +135,7 @@ function AddProduct() {
                 multiline
                 rows={4}
                 sx={{width:'300px'}}
+                name="S_dscrpt" onChange={formik.handleChange} value={formik.values.S_dscrpt}
              />
            </Stack>
         </Box>        
@@ -102,11 +143,11 @@ function AddProduct() {
       <Divider></Divider>
       <Stack sx={{ textAlign: 'center', margin:'10px'}}>
         <Box>
-        <Button variant="contained">Submit</Button>
-        <Button sx={{margin:'10px'}} variant="outlined">Cancel</Button>
+        <Button variant="contained" type="submit">Submit</Button>
+        <Button sx={{margin:'10px'}} type="reset" onClick={()=>{formik.resetForm()}} variant="outlined">Reset</Button>
         </Box>        
       </Stack>
-     
+      </form>
     </div>
   );
 }

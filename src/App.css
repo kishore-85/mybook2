@@ -38,7 +38,7 @@
 } */
 .App{
   display: grid;
-  height: 120vh;
+  height: 140vh;
   grid-template-rows: 63px 1fr 50px;
   grid-template-columns: 18% 1fr;  
   grid-template-areas: "header header"

@@ -35,38 +35,50 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 //-------------hard-code--------------//
 const state = [
   {
-    name: "tamilnadu",
-    capital: "chennai",
-    ipl: "csk",
-    captain: "msd",
-    trophies: "5",
+    name: "Kishore",
+    email: "kishore@gmail.com",    
+    Contact: "8797789860",
+    City: "karur",
   },
   {
-    name: "karanataka",
-    capital: "bangalore",
-    ipl: "rcb",
-    captain: "kholi",
-    trophies: "5",
+    name: "naveen",
+    email: "naveen@gmail.com",    
+    Contact: "7986056670",
+    City: "Erode",
   },
   {
-    name: "maharashtra",
-    capital: "mumbai",
-    ipl: "mi",
-    captain: "rohit",
-    trophies: "0",
+    name: "praveen",
+    email: "praveen@gmail.com",    
+    Contact: "7898606645",
+    City: "salem",
   },
+  {
+    name: "neeraj",
+    email: "neeraj@gmail.com",    
+    Contact: "606645121",
+    City: "Chennai",
+  },
+  {
+    name: "Kavin",
+    email: "Kavin@gmail.com",    
+    Contact: "6789860664",
+    City: "madurai",
+  },
+  {
+    name: "Ram",
+    email: "Ram@gmail.com",    
+    Contact: "7890664523",
+    City: "trichy",
+  },
+  {
+    name: "Subash",
+    email: "Subash@gmail.com",    
+    Contact: "890664590",
+    City: "karur",
+  }
 ];
 
 function Customer() {
-  const [data, setdata] = useState([]);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((res) => setdata(res))
-      .catch((err) => console.error(err));
-  });
-  console.log(data, "data");
   return (
     <div>
       <Stack row sx={{ flexDirection: "row-reverse" }}>
@@ -83,23 +95,21 @@ function Customer() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Id</StyledTableCell>
-              <StyledTableCell align="center">Title</StyledTableCell>
-              <StyledTableCell align="center">Category</StyledTableCell>
-              <StyledTableCell align="center">Price</StyledTableCell>
-              {/* <StyledTableCell align="right">Trophies</StyledTableCell> */}
+              <StyledTableCell>customer Name</StyledTableCell>
+              <StyledTableCell align="center">Email</StyledTableCell>
+              <StyledTableCell align="center">Contact</StyledTableCell>
+              <StyledTableCell align="center">City</StyledTableCell>              
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((row) => (
-              <StyledTableRow key={row.id}>
+            {state.map((row) => (
+              <StyledTableRow key={row.name}>
                 <StyledTableCell component="th" scope="row">
-                  {row.id}
+                  {row.name}
                 </StyledTableCell>
-                <StyledTableCell align="center">{row.title}</StyledTableCell>
-                <StyledTableCell align="center">{row.category}</StyledTableCell>
-                <StyledTableCell align="center">{row.price}</StyledTableCell>
-                {/* <StyledTableCell align="right">{row.trophies}</StyledTableCell> */}
+                <StyledTableCell align="center">{row.email}</StyledTableCell>
+                <StyledTableCell align="center">{row.Contact}</StyledTableCell>
+                <StyledTableCell align="center">{row.City}</StyledTableCell>                
               </StyledTableRow>
             ))}
           </TableBody>
