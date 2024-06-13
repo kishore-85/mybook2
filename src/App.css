@@ -67,8 +67,7 @@
   grid-area:sidenav ;
 }
 
-.Container{
-  background-color: bisque;
+.Container{ 
   grid-area:container ;
 }
 
@@ -79,8 +78,14 @@
   text-align: center;
 }
 
+.t-a-c{
+  text-align: center;
+  color:aliceblue;  
+}
 
-
+.h-a-h5{
+  color:#9e1c38;
+}
 a{
   text-decoration: none;
 }
