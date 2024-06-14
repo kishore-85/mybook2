@@ -38,8 +38,8 @@
 } */
 .App{
   display: grid;
-  height: 100vh;
-  grid-template-rows: 50px 1fr 50px;
+  height: 140vh;
+  grid-template-rows: 63px 1fr 50px;
   grid-template-columns: 18% 1fr;  
   grid-template-areas: "header header"
                         "sidenav container"
@@ -48,19 +48,26 @@
 }
 
 .Header{
-  background-color:brown;
-  grid-area:header ;
+  /* background-color:grey; */
+  grid-area:header ; 
+ 
+}
+
+#header_1{
+  background-color:#939490;
+}
+
+.header-r-1{
   display: flex;
-  justify-content: space-between;
+  justify-items: flex-start;
 }
 
 .Sidenav{
-  background-color: azure;
+  background-color: ghostwhite;
   grid-area:sidenav ;
 }
 
-.Container{
-  background-color: bisque;
+.Container{ 
   grid-area:container ;
 }
 
@@ -71,20 +78,15 @@
   text-align: center;
 }
 
-#H-right{
-  margin:10px;
+.t-a-c{
+  text-align: center;
+  color:aliceblue;  
 }
 
-.H-link{
-  margin: 15px;
-  padding-top: 10px;
-  
+.h-a-h5{
+  color:#9e1c38;
 }
-
 a{
   text-decoration: none;
 }
 
-li{
-  margin-top: 20px;
-}
