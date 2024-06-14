@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import {Checkbox,width} from '@mui/material'
 import { useState,useEffect } from "react";
 import Button from '@mui/material/Button';
-import { Field, Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import Alert from '@mui/material/Alert';
 import * as Yup from 'yup'
 
@@ -95,7 +95,7 @@ function AddProduct() {
         </Stack>
 
         <Stack direction="row" spacing={6}>
-        <label style={{ paddingTop: "5px" }}>Tax-Preference</label>
+          <label style={{ paddingTop: "5px" }}>Tax-Preference</label>
           <FormControl>            
             <RadioGroup
               row

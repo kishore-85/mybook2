@@ -1,7 +1,7 @@
 function Footer(){
     return(
         <div className="Footer">
-        <p>Footer component</p>
+        <p>@2024 BillApp.All rights reserved.</p>
         </div>
     )
 }

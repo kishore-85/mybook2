@@ -29,7 +29,7 @@ function Addcustomer(){
         validationSchema 
     })
 
-    // console.log(formik,'formval')
+   
     return(
         <>
         <form onSubmit={formik.handleSubmit}>

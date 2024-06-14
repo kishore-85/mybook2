@@ -12,7 +12,7 @@ function Header(){
              <HomeMini />
              </IconButton>
              <Typography variant="h6" component='div' sx={{flexGrow:1}}>
-                 Vbooks
+                 BillApp
              </Typography>
              <Stack direction='row' spacing={2}>                
                  <Button color="inherit">Settings</Button>                 
